@@ -18,9 +18,9 @@ public class UserController {
 	@Autowired
 	private UserService us;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/getem.tony/{id}")
-	public ResponseEntity<User> getById(@PathVariable String id){
-		return new ResponseEntity<User>(us.findById(Integer.parseInt(id)),HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/getem.tony")
+	public ResponseEntity<User> getById(@PathVariable("id") int id){
+		return new ResponseEntity<User>(us.findById(id),HttpStatus.OK);
 		
 	}
 	@RequestMapping(method = RequestMethod.POST, value="/in.tony")
@@ -33,9 +33,9 @@ public class UserController {
 	    return new ResponseEntity<User>(us.update(u),HttpStatus.OK);
 	}
 	 
-	@RequestMapping(method = RequestMethod.DELETE, value="/gone.tony")
-	  public ResponseEntity<String> deleteById(){
-	     us.deleteById(3);
+	@RequestMapping(method = RequestMethod.DELETE, value="/{id}/gone.tony")
+	  public ResponseEntity<String> deleteById(@PathVariable("id") int id){
+	     us.deleteById(id);
 	     return new ResponseEntity<String>("should be deleted",HttpStatus.OK);
 	}
 	 

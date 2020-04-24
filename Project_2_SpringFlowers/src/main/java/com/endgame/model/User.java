@@ -27,7 +27,7 @@ public class User {
 	private int id;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Post> posts;
 	
 	@Column

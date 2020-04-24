@@ -39,21 +39,25 @@ public class UserDao implements DaoContact<User, Integer> {
 
 	@Override
 	public void deleteById(Integer id) {
-		Session session = sesfact.openSession();
-	    Transaction tx = session.beginTransaction();
-	    User t = this.findById(id);
-	    session.delete(t);
-	    tx.commit();
+		User t = this.findById(id);
+		sesfact.getCurrentSession().delete(t);
+//		Session session = sesfact.openSession();
+//	    Transaction tx = session.beginTransaction();
+//	    User t = this.findById(id);
+//	    session.delete(t);
+//	    tx.commit();
 		
 	}
 
 	@Override
 	public User update(User t) {
-		Session session = sesfact.openSession();
-	    Transaction tx = session.beginTransaction();
-	    session.update(t);
-	    tx.commit();
-	    return t;
+		sesfact.getCurrentSession().update(t);
+		return t;
+//		Session session = sesfact.openSession();
+//	    Transaction tx = session.beginTransaction();
+//	    session.update(t);
+//	    tx.commit();
+//	    return t;
 	}
 
 	
