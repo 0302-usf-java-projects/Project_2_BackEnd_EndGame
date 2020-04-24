@@ -2,11 +2,14 @@ package com.endgame.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -16,18 +19,16 @@ import javax.validation.ValidatorFactory;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table
+@Table(name="user")
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	private int id;
 	
-	
-	@Column(unique = true)
-	@NotNull
-	private String username;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL)
+	private Set<Post> posts;
 	
 	@Column
 	@NotNull
@@ -60,9 +61,9 @@ public class User {
 		super();
 	}
 	
-	public static User newInstance(int id, String username, String password, String firstname, String lastname, String birthday,
+	public static User newInstance(int id, Set<Post> posts, String password, String firstname, String lastname, String birthday,
 			String sex, String email) {
-		User loser = new User(id, username, password, firstname, lastname, birthday, sex, email);
+		User loser = new User(id, posts, password, firstname, lastname, birthday, sex, email);
 		
 		ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
 	    Validator v = vf.getValidator();
@@ -74,13 +75,14 @@ public class User {
 	}
 	
 	
+	
 
 
-	private User(int id, String username, String password, String firstname, String lastname, String birthday,
+	public User(int id, Set<Post> posts, String password, String firstname, String lastname, String birthday,
 			String sex, String email) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.posts = posts;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -88,10 +90,6 @@ public class User {
 		this.sex = sex;
 		this.email = email;
 	}
-
-
-
-
 
 	public int getId() {
 		return id;
@@ -103,14 +101,6 @@ public class User {
 	}
 
 
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 
 	public String getPassword() {
@@ -173,16 +163,6 @@ public class User {
 	}
 
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", birthday=" + birthday + ", sex=" + sex + ", email=" + email + "]";
-	}
-	
-	
-	
-	
-	
 	
 	
 
