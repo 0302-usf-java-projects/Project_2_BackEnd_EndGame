@@ -1,9 +1,12 @@
 package com.endgame.dao;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-
-
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -27,6 +30,7 @@ public class UserDao implements DaoContact<User, Integer> {
 	
 	@Override
 	public User insert(User t) {
+		t.setPassword(securePassword(t.getPassword()));
 		sesfact.openSession().save(t);
 		return t;
 		
@@ -58,6 +62,42 @@ public class UserDao implements DaoContact<User, Integer> {
 //	    session.update(t);
 //	    tx.commit();
 //	    return t;
+	}
+
+	@Override
+	public Object authentication(String email, String password) {
+		Session session = sesfact.getCurrentSession();
+		Object user = null;
+		try{
+			user = session.createSQLQuery("select * from \"user\" where email='"+email+"' and password='"+securePassword(password)+"'").getSingleResult();
+			return user;
+		}catch (NoResultException nre){
+		//Ignore this because as per your logic this is ok!
+		}
+		if(user == null){
+		 return null;
+		}
+		return null;
+
+
+	}
+	
+	
+	public String securePassword(String passwordToHash){
+	    String generatedPassword = null;
+	    try {
+	        MessageDigest md = MessageDigest.getInstance("SHA-512");
+	        md.update("kamal".getBytes(StandardCharsets.UTF_8));
+	        byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+	        StringBuilder sb = new StringBuilder();
+	        for(int i=0; i< bytes.length ;i++){
+	            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	        generatedPassword = sb.toString();
+	    } catch (NoSuchAlgorithmException e) {
+	        e.printStackTrace();
+	    }
+	    return generatedPassword;
 	}
 
 	

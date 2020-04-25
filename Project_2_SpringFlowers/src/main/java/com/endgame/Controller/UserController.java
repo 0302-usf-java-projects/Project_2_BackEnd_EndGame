@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +14,19 @@ import com.endgame.model.User;
 import com.endgame.service.UserService;
 
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	@Autowired
 	private UserService us;
 	
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "/{email}/{password}/authentication.tony")
+	public ResponseEntity<Object> authentication(@PathVariable("email") String email,@PathVariable("password") String password){
+		return new ResponseEntity<Object>(us.authentication(email,password),HttpStatus.OK);
+	}
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}/getem.tony")
 	public ResponseEntity<User> getById(@PathVariable("id") int id){
 		return new ResponseEntity<User>(us.findById(id),HttpStatus.OK);
-		
 	}
 	@RequestMapping(method = RequestMethod.POST, value="/in.tony")
 	public ResponseEntity<User> insert(@RequestBody User u){

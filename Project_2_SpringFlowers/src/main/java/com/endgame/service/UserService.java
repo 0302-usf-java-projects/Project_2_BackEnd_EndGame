@@ -33,5 +33,9 @@ public class UserService {
 	public void deleteById(Integer id) {
 		loser.deleteById(id);
 	}
+	
+	public Object authentication(String email,String password) {
+		return loser.authentication(email,password);
+	}
 
 }
