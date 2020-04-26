@@ -18,7 +18,7 @@ import com.endgame.model.User;
 
 @Repository
 @Transactional
-public class UserDao implements DaoContact<User, Integer> {
+public class UserDao implements DaoContract<User, Integer> {
 	
 
 	private SessionFactory sesfact;
@@ -43,21 +43,15 @@ public class UserDao implements DaoContact<User, Integer> {
 
 	@Override
 	public void deleteById(Integer id) {
-		User t = this.findById(id);
+		User t = sesfact.getCurrentSession().get(User.class, id);
 		sesfact.getCurrentSession().delete(t);
-//		Session session = sesfact.openSession();
-//	    Transaction tx = session.beginTransaction();
-//	    User t = this.findById(id);
-//	    session.delete(t);
-//	    tx.commit();
+
 		
 	}
 
 	@Override
 	public User update(User t) {
 		t.setPassword(securePassword(t.getPassword()));
-		//sesfact.getCurrentSession().update(t);
-		//return t;
 		Session session = sesfact.openSession();
 	    Transaction tx = session.beginTransaction();
 	    session.update(t);

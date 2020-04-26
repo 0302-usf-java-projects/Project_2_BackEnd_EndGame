@@ -2,7 +2,7 @@ package com.endgame.dao;
 
 import java.util.List;
 
-public interface DaoContact<T,I> {
+public interface DaoContract<T,I> {
 	T insert(T t);
 	T findById(I id);
 	void deleteById(I id);

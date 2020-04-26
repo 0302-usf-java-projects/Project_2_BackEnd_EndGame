@@ -3,16 +3,16 @@ package com.endgame.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.endgame.dao.DaoContact;
+import com.endgame.dao.DaoContract;
 import com.endgame.model.User;
 
 @Service
 public class UserService {
 	
-	private DaoContact<User, Integer> loser;
+	private DaoContract<User, Integer> loser;
 	
 	@Autowired
-	public void setLoser(DaoContact<User, Integer> us) {
+	public void setLoser(DaoContract<User, Integer> us) {
 		loser=us;
 	}
 	
