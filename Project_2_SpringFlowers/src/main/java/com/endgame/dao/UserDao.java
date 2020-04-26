@@ -55,13 +55,14 @@ public class UserDao implements DaoContact<User, Integer> {
 
 	@Override
 	public User update(User t) {
-		sesfact.getCurrentSession().update(t);
-		return t;
-//		Session session = sesfact.openSession();
-//	    Transaction tx = session.beginTransaction();
-//	    session.update(t);
-//	    tx.commit();
-//	    return t;
+		t.setPassword(securePassword(t.getPassword()));
+		//sesfact.getCurrentSession().update(t);
+		//return t;
+		Session session = sesfact.openSession();
+	    Transaction tx = session.beginTransaction();
+	    session.update(t);
+	    tx.commit();
+	    return t;
 	}
 
 	@Override
