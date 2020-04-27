@@ -35,11 +35,33 @@ public class Post {
 	private String content;
 	private String created;
 	private String updated;
+	private String type;
+	private String photoKey;
+	
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public String getPhotoKey() {
+		return photoKey;
+	}
+
+
+	public void setPhotoKey(String photoKey) {
+		this.photoKey = photoKey;
+	}
+
 
 	
 	  public static Post newInstance(int id, User user, String title, String
-	  content, String created, String updated) { Post po = new Post(id, user,
-	  title, content, created, updated);
+	  content, String created, String updated, String type, String photoKey) { Post po = new Post(id, user,
+	  title, content, created, updated, type,photoKey);
 	  
 	  ValidatorFactory vf = Validation.buildDefaultValidatorFactory(); Validator v
 	  = vf.getValidator(); Set<ConstraintViolation<Post>> violations =
@@ -47,7 +69,7 @@ public class Post {
 	  RuntimeException("Stop doing that"); } return po; }
 	 
 
-	public Post(int id, User user, String title, String content, String created, String updated) {
+	public Post(int id, User user, String title, String content, String created, String updated, String type,String photoKey) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -55,6 +77,8 @@ public class Post {
 		this.content = content;
 		this.created = created;
 		this.updated = updated;
+		this.type = type;
+		this.photoKey = photoKey;
 	}
 
 	public Post() {
