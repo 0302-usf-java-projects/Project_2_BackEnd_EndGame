@@ -19,38 +19,35 @@ import javax.validation.ValidatorFactory;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-
 @Entity
 @Table
 public class Post {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@ManyToOne(fetch = FetchType.LAZY )
+
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name="user_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	private User user;
 	private String title;
 	private String content;
-	private Timestamp created;
-	private Timestamp updated;
+	private String created;
+	private String updated;
+
 	
-	
-	public static Post newInstance(int id, User user, String title, String content, Timestamp created, Timestamp updated) {
-		Post po = new Post(id, user, title, content, created, updated);
-		
-		ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-	    Validator v = vf.getValidator();
-	    Set<ConstraintViolation<Post>> violations = v.validate(po);
-	    if(violations.size()>0) {
-	      throw new RuntimeException("Stop doing that");
-	    }
-	    return po;
-	}
-	
-	public Post(int id, User user, String title, String content, Timestamp created, Timestamp updated) {
+	  public static Post newInstance(int id, User user, String title, String
+	  content, String created, String updated) { Post po = new Post(id, user,
+	  title, content, created, updated);
+	  
+	  ValidatorFactory vf = Validation.buildDefaultValidatorFactory(); Validator v
+	  = vf.getValidator(); Set<ConstraintViolation<Post>> violations =
+	  v.validate(po); if(violations.size()>0) { throw new
+	  RuntimeException("Stop doing that"); } return po; }
+	 
+
+	public Post(int id, User user, String title, String content, String created, String updated) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -59,111 +56,64 @@ public class Post {
 		this.created = created;
 		this.updated = updated;
 	}
-
-
-
 
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
 	public int getId() {
 		return id;
 	}
-
-
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
-
 	public User getUser() {
 		return user;
 	}
-
-
-
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
-
-
 	public String getTitle() {
 		return title;
 	}
-
-
-
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
-
-
 	public String getContent() {
 		return content;
 	}
-
-
-
 
 	public void setContent(String content) {
 		this.content = content;
 	}
 
-
-
-
-	public Timestamp getCreated() {
+	public String getCreated() {
 		return created;
 	}
 
-
-
-
-	public void setCreated(Timestamp created) {
+	public void setCreated(String created) {
 		this.created = created;
 	}
 
-
-
-
-	public Timestamp getUpdated() {
+	public String getUpdated() {
 		return updated;
 	}
 
-
-
-
-	public void setUpdated(Timestamp updated) {
+	public void setUpdated(String updated) {
 		this.updated = updated;
 	}
-
-
-
 
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", created="
 				+ created + ", updated=" + updated + "]";
 	}
-	
-	
-	
-	
-	
 
 }

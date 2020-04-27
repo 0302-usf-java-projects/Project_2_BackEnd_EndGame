@@ -29,8 +29,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private Set<Post> posts;
 	
 	@Column
@@ -56,6 +55,8 @@ public class User {
 	@Column(unique = true)
 	@NotNull
 	private String email;
+	
+	
 	
 	
 	

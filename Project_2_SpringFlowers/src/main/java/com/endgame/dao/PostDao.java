@@ -32,6 +32,7 @@ public class PostDao implements CrudContract<Post, Integer > {
 
 	@Override
 	public Post insert(Post p) {
+		System.out.println(p);
 		sesfact.getCurrentSession().save(p);
 		return p;
 	}
