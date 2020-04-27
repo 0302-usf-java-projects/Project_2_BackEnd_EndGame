@@ -208,6 +208,13 @@ public class User {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", posts=" + posts + ", password=" + password + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", birthday=" + birthday + ", sex=" + sex + ", phone=" + phone + ", work="
+				+ work + ", education=" + education + ", address=" + address + ", email=" + email + "]";
+	}
+
 
 	
 	
