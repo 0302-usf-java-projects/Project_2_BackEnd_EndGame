@@ -46,28 +46,37 @@ public class User {
 	
 	@Column
 	@NotNull
-	private String birthday;
+	private String birthday; //month-day-year
 	
 	@Column
 	@NotNull
-	private String sex;
+	private String sex; //apparently more than male or female 
+	
+	@Column
+	private String phone; //users phone number 
+	
+	@Column
+	private String work; //users place of employment
+	
+	@Column
+	private String education;
+	
+	@Column
+	private String address; //users current address
 	
 	@Column(unique = true)
 	@NotNull
 	private String email;
 	
-	
-	
-	
-	
+
 	
 	public User() {
 		super();
 	}
 	
 	public static User newInstance(int id, Set<Post> posts, String password, String firstname, String lastname, String birthday,
-			String sex, String email) {
-		User loser = new User(id, posts, password, firstname, lastname, birthday, sex, email);
+			String sex, String phone, String work, String education, String address, String email) {
+		User loser = new User(id, posts, password, firstname, lastname, birthday, sex, phone, work, education, address, email);
 		
 		ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
 	    Validator v = vf.getValidator();
@@ -78,12 +87,9 @@ public class User {
 	    return loser;
 	}
 	
-	
-	
-
 
 	public User(int id, Set<Post> posts, String password, String firstname, String lastname, String birthday,
-			String sex, String email) {
+			String sex, String phone, String work, String education, String address, String email) {
 		super();
 		this.id = id;
 		this.posts = posts;
@@ -92,7 +98,43 @@ public class User {
 		this.lastname = lastname;
 		this.birthday = birthday;
 		this.sex = sex;
+		this.phone = phone;
+		this.work = work;
+		this.education = education;
+		this.address = address;
 		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getWork() {
+		return work;
+	}
+
+	public void setWork(String work) {
+		this.work = work;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public int getId() {

@@ -37,7 +37,18 @@ public class Post {
 	private String updated;
 	private String type;
 	private String photoKey;
+	private int numLikes;
 	
+	public int getNumLikes() {
+		return numLikes;
+	}
+
+
+	public void setNumLikes(int numLikes) {
+		this.numLikes = numLikes;
+	}
+
+
 	public String getType() {
 		return type;
 	}
@@ -60,8 +71,8 @@ public class Post {
 
 	
 	  public static Post newInstance(int id, User user, String title, String
-	  content, String created, String updated, String type, String photoKey) { Post po = new Post(id, user,
-	  title, content, created, updated, type,photoKey);
+	  content, String created, String updated, String type, int numLikes, String photoKey) { Post po = new Post(id, user,
+	  title, content, created, updated, type, numLikes, photoKey);
 	  
 	  ValidatorFactory vf = Validation.buildDefaultValidatorFactory(); Validator v
 	  = vf.getValidator(); Set<ConstraintViolation<Post>> violations =
@@ -69,7 +80,7 @@ public class Post {
 	  RuntimeException("Stop doing that"); } return po; }
 	 
 
-	public Post(int id, User user, String title, String content, String created, String updated, String type,String photoKey) {
+	public Post(int id, User user, String title, String content, String created, String updated, String type, int numLikes, String photoKey) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -78,6 +89,7 @@ public class Post {
 		this.created = created;
 		this.updated = updated;
 		this.type = type;
+		this.numLikes = numLikes;
 		this.photoKey = photoKey;
 	}
 
@@ -134,10 +146,14 @@ public class Post {
 		this.updated = updated;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", created="
-				+ created + ", updated=" + updated + "]";
+				+ created + ", updated=" + updated + ", type=" + type + ", photoKey=" + photoKey + ", numLikes="
+				+ numLikes + "]";
 	}
+
+	
 
 }
