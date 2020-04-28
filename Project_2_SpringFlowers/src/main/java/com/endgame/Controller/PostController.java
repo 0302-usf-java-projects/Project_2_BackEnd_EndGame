@@ -23,6 +23,13 @@ public class PostController {
 	@Autowired
 	private PostService ps;
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/allposts.tony")
+	//response entity is a type that lets you build an entire http response
+	public ResponseEntity<List<Post>> findAll() {
+		return new ResponseEntity<List<Post>>(ps.findAll(), HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(method = RequestMethod.POST, value ="/addpo.tony")
 	public ResponseEntity<Post> insert(@RequestBody Post p){
 		return  new ResponseEntity<Post>(ps.insert(p), HttpStatus.OK);

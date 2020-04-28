@@ -9,6 +9,7 @@ import com.endgame.dao.CrudContract;
 import com.endgame.dao.DaoContract;
 import com.endgame.model.Post;
 
+
 @Service
 public class PostService {
 	
@@ -22,6 +23,10 @@ public class PostService {
 	public Post insert(Post p) {
 		po.insert(p);
 		return p;
+	}
+	
+	public List<Post> findAll(){
+		return po.findAll();
 	}
 	
 	public List<Post> findAllById(int id){

@@ -24,6 +24,12 @@ public class PostDao implements CrudContract<Post, Integer > {
 	public void serSesFactory(SessionFactory sse) {
 		sesfact= sse;
 	}
+	
+	@Override
+	public List<Post> findAll() {
+		return sesfact.openSession().createQuery("from Post", Post.class).list();
+	}
+	
 	@Override
 	public List<Post> getAllById(Integer id){
 		User u = sesfact.getCurrentSession().get(User.class, id);

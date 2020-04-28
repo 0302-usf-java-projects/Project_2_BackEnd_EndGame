@@ -19,8 +19,9 @@ import javax.validation.ValidatorFactory;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+
 @Entity
-@Table
+@Table(name="post")
 public class Post {
 
 	@Id
@@ -28,7 +29,7 @@ public class Post {
 	private int id;
 
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
 	private String title;
