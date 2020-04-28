@@ -29,8 +29,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private Set<Post> posts;
 	
 	@Column
@@ -47,26 +46,37 @@ public class User {
 	
 	@Column
 	@NotNull
-	private String birthday;
+	private String birthday; //month-day-year
 	
 	@Column
 	@NotNull
-	private String sex;
+	private String sex; //apparently more than male or female 
+	
+	@Column
+	private String phone; //users phone number 
+	
+	@Column
+	private String work; //users place of employment
+	
+	@Column
+	private String education;
+	
+	@Column
+	private String address; //users current address
 	
 	@Column(unique = true)
 	@NotNull
 	private String email;
 	
-	
-	
+
 	
 	public User() {
 		super();
 	}
 	
 	public static User newInstance(int id, Set<Post> posts, String password, String firstname, String lastname, String birthday,
-			String sex, String email) {
-		User loser = new User(id, posts, password, firstname, lastname, birthday, sex, email);
+			String sex, String phone, String work, String education, String address, String email) {
+		User loser = new User(id, posts, password, firstname, lastname, birthday, sex, phone, work, education, address, email);
 		
 		ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
 	    Validator v = vf.getValidator();
@@ -77,12 +87,9 @@ public class User {
 	    return loser;
 	}
 	
-	
-	
-
 
 	public User(int id, Set<Post> posts, String password, String firstname, String lastname, String birthday,
-			String sex, String email) {
+			String sex, String phone, String work, String education, String address, String email) {
 		super();
 		this.id = id;
 		this.posts = posts;
@@ -91,7 +98,43 @@ public class User {
 		this.lastname = lastname;
 		this.birthday = birthday;
 		this.sex = sex;
+		this.phone = phone;
+		this.work = work;
+		this.education = education;
+		this.address = address;
 		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getWork() {
+		return work;
+	}
+
+	public void setWork(String work) {
+		this.work = work;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public int getId() {
@@ -163,6 +206,13 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", posts=" + posts + ", password=" + password + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", birthday=" + birthday + ", sex=" + sex + ", phone=" + phone + ", work="
+				+ work + ", education=" + education + ", address=" + address + ", email=" + email + "]";
 	}
 
 
