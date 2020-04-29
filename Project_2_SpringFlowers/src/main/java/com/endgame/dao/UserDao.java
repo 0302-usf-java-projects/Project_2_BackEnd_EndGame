@@ -3,6 +3,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
+import java.util.Random;
+
+
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
@@ -14,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 //import org.springframework.transaction.annotation.Transactional;
 
+import com.endgame.helpers.SendEmail;
 import com.endgame.model.User;
 import org.hibernate.Query;
 
@@ -41,22 +46,71 @@ public class UserDao implements DaoContract<User, Integer> {
 	public User findById(Integer id) {
 		return sesfact.openSession().get(User.class, id);
 	}
+	
+	@Override
+	public User findByEmail(String email) {	
+		
+		//Session session = sesfact.openSession();
+		 Session session = sesfact.getCurrentSession();
+		 String q = "from User where email ='"+email+"'";
+         User user = (User) session.createQuery(q).getSingleResult();
+		 return user;	
+	} 
 
 	@Override
 	public void deleteById(Integer id) {
 		User t = sesfact.getCurrentSession().get(User.class, id);
-		sesfact.getCurrentSession().delete(t);
-
-		
+		sesfact.getCurrentSession().delete(t);		
 	}
+	
+	
+	public String generatePassword() {
+		
+		 int leftLimit = 97; // letter 'a'
+		    int rightLimit = 122; // letter 'z'
+		    int targetStringLength = 10;
+		    Random random = new Random();
+		    StringBuilder buffer = new StringBuilder(targetStringLength);
+		    for (int i = 0; i < targetStringLength; i++) {
+		        int randomLimitedInt = leftLimit + (int) 
+		          (random.nextFloat() * (rightLimit - leftLimit + 1));
+		        buffer.append((char) randomLimitedInt);
+		    }
+		    String generatedString = buffer.toString();
+		 
+		    //System.out.println(generatedString);			    
+		    
+		return generatedString;
+	}
+	
+		
+	public String updatePass(String email) {
+						
+		User user = findByEmail(email);
+		if(user != null) {
+									
+			String tempPass = generatePassword();									
+			user.setPassword(tempPass);
+			SendEmail.mail(email, user);
+			System.out.println(user.getPassword());
+			update(user);
+			
+			return "user found";
+			
+		}else {
+			return "user is not found";
+		}		
+												
+	}
+	
 
 	@Override
 	public User update(User t) {
 		t.setPassword(securePassword(t.getPassword()));
-		Session session = sesfact.openSession();
-	    Transaction tx = session.beginTransaction();
+		Session session = sesfact.getCurrentSession();
+	    //Transaction tx = session.beginTransaction();
 	    session.update(t);
-	    tx.commit();
+	   // tx.commit();
 	    return t;
 	}
 

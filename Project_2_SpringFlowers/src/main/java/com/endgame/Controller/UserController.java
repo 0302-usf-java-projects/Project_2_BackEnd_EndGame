@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.endgame.dao.UserDao;
+import com.endgame.helpers.SendEmail;
 import com.endgame.model.User;
 import com.endgame.service.UserService;
 
@@ -30,6 +32,12 @@ public class UserController {
 	public ResponseEntity<User> getById(@PathVariable("id") int id){
 		return new ResponseEntity<User>(us.findById(id),HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{email}/getemail.tony")
+	public ResponseEntity<User> getByEmail(@PathVariable("email") String email){
+		return new ResponseEntity<User>(us.findByEmail(email),HttpStatus.OK);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value="/in.tony")
 	public ResponseEntity<User> insert(@RequestBody User u){
 		return new ResponseEntity<User>(us.insert(u),HttpStatus.OK);
@@ -46,13 +54,27 @@ public class UserController {
 	     return new ResponseEntity<String>("should be deleted",HttpStatus.OK);
 	}
 	
+
 	@RequestMapping(method = RequestMethod.GET, value = "{firstName}/search.tony")
 	public ResponseEntity<List<User>> searchByName(@PathVariable("firstName") String firstName) {
 	    return new ResponseEntity<List<User>>(us.searchByName(firstName), HttpStatus.OK);
 	}
 	 
+
+//	@RequestMapping(method = RequestMethod.GET, value="/{email}/email.tony")
+//		public ResponseEntity<String> sendEmail(@PathVariable("email") String email){		
+//					us.sendMail(email);
+//			return new ResponseEntity<String>("email sent", HttpStatus.OK);
+//	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/{email}/updatepass.tony")
+	public ResponseEntity<String> updatepass(@PathVariable("email") String email){		
+				us.updatePass(email);
+		return new ResponseEntity<String>("pass updated", HttpStatus.OK);
+}
 	 
 	
+}	
 	
 
-}
+
