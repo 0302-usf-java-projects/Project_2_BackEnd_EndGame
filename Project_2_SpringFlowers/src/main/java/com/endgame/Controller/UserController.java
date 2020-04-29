@@ -1,5 +1,6 @@
 package com.endgame.Controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.endgame.model.User;
 import com.endgame.service.UserService;
+
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -42,6 +44,11 @@ public class UserController {
 	  public ResponseEntity<String> deleteById(@PathVariable("id") int id){
 	     us.deleteById(id);
 	     return new ResponseEntity<String>("should be deleted",HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "{firstName}/search.tony")
+	public ResponseEntity<List<User>> searchByName(@PathVariable("firstName") String firstName) {
+	    return new ResponseEntity<List<User>>(us.searchByName(firstName), HttpStatus.OK);
 	}
 	 
 	 

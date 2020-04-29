@@ -1,5 +1,6 @@
 package com.endgame.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,10 @@ public class UserService {
 	
 	public Object authentication(String email,String password) {
 		return loser.authentication(email,password);
+	}
+	
+	public List<User> searchByName(String firstName){
+	  return loser.searchByName(firstName);
 	}
 
 }

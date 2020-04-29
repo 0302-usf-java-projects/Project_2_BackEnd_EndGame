@@ -8,5 +8,6 @@ public interface DaoContract<T,I> {
 	void deleteById(I id);
 	T update(T t);
 	Object authentication(String email, String password);
+	List<T> searchByName(String firstName); 
 
 }

@@ -2,7 +2,7 @@ package com.endgame.dao;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+import java.util.List;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 //import org.springframework.transaction.annotation.Transactional;
 
 import com.endgame.model.User;
+import org.hibernate.Query;
 
 @Repository
 @Transactional
@@ -94,6 +95,25 @@ public class UserDao implements DaoContract<User, Integer> {
 	    }
 	    return generatedPassword;
 	}
+	
+//	public List<User> searchByName(String firstName){
+//	  return sesfact.openSession().createQuery("From User where" +  firstName + " like '%?%'", User.class).list();
+//	}
+	
+	/**this is tested and returns the user with the specified first name*/
+//	public List<User> searchByName(String firstName){
+//	  Session session = sesfact.getCurrentSession();
+//	 String q = "from User where firstname ='"+firstName+"'";
+//	 List<User> list = session.createQuery(q).list();
+//	 return list;
+//	}
+	
+	   public List<User> searchByName(String firstName){
+	      Session session = sesfact.getCurrentSession();
+	     String q = "from User where firstname LIKE :firstName";
+	     List<User> list = session.createQuery(q).setParameter("firstName","%" + firstName + "%").getResultList();
+	     return list;
+	    }
 
 	
 }
