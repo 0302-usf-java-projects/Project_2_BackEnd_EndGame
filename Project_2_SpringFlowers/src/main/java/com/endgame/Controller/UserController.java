@@ -72,8 +72,8 @@ public class UserController {
 				us.updatePass(email);
 		return new ResponseEntity<String>(us.updatePass(email), HttpStatus.OK);
 }
-	 
-	
+
+
 }	
 	
 
