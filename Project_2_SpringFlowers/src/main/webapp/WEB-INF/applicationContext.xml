@@ -25,9 +25,9 @@
 	
 	<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver"/>
-		<property name="url" value="jdbc:postgresql://revature-rivera-database-1.cbz1been1ejb.us-east-2.rds.amazonaws.com:5432/joe"/>
-		<property name="username" value="user_1"/>
-		<property name="password" value="pass"/>
+		<property name="url" value="jdbc:postgresql://postres-doesnt-matter.cvlbfwidrytg.us-east-2.rds.amazonaws.com:5432/postgres"/>
+		<property name="username" value="kamal"/>
+		<property name="password" value="1994514aaa"/>
 	
 	</bean>
 	
@@ -44,7 +44,7 @@
 		<prop key="hibernate.show_sql"></prop>
 		<prop key="hibernate.format_sql">true</prop>
 		<prop key="hibernate.default_schema">public</prop>
-		<prop key="hibernate.hbm2ddl.auto">create</prop>
+		<prop key="hibernate.hbm2ddl.auto">validate</prop>
 		<prop key="hibernate.connection.isolation">repeatable_read</prop>
 		
 	</props>

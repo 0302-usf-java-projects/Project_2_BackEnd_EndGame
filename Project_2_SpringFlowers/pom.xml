@@ -120,6 +120,21 @@
     <version>2.10.2</version>
 </dependency>
 
+<<<<<<< HEAD
+<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core -->
+<dependency>
+    <groupId>org.apache.tomcat.embed</groupId>
+    <artifactId>tomcat-embed-core</artifactId>
+    <version>8.5.23</version>
+</dependency>
+
+
+		<dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+=======
 <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
 <dependency>
     <groupId>javax.mail</groupId>
@@ -127,6 +142,7 @@
     <version>1.6.2</version>
 </dependency>
 
+>>>>>>> 54876af998ab259ec2e78cc3c60cce5f93f53125
 
   </dependencies>
 </project>
