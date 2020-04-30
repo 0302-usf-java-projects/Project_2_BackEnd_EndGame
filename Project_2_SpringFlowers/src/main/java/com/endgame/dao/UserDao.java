@@ -22,6 +22,15 @@ import com.endgame.helpers.SendEmail;
 import com.endgame.model.User;
 import org.hibernate.Query;
 
+/**
+ * 
+ * 
+ * @author mohamad
+ * UserDao class has the methods that will allow us to access the database.
+ *      It will allow us the add, remove and update user data using the methods that
+ *          are implemented in this class. 
+ *
+ */
 @Repository
 @Transactional
 public class UserDao implements DaoContract<User, Integer> {
@@ -33,7 +42,12 @@ public class UserDao implements DaoContract<User, Integer> {
 	  public void setSesFactory(SessionFactory sse) {
 	    sesfact= sse;
 	  }
-	
+	/**
+	 * 
+	 * the insert method will let us insert a new user in the database
+	 *     when we register on the front end. once a user chooses a password, 
+	 *         it will be hashed and stored in the database. 
+	 */
 	@Override
 	public User insert(User t) {
 		t.setPassword(securePassword(t.getPassword()));
@@ -41,11 +55,24 @@ public class UserDao implements DaoContract<User, Integer> {
 		return t;
 		
 	}
+	
+	/**
+	 * 
+	 * findById method will allow us to retrieve user information from
+	 *     the database using their unique id.
+	 */
 
 	@Override
 	public User findById(Integer id) {
 		return sesfact.openSession().get(User.class, id);
 	}
+	
+	/**
+	 * 
+	 * findByEmail method was implemented in case a user forgot their password. This
+	 *     method will allow us to retrieve the user info by email so we can send them 
+	 *         a secured email with a new password associated with their account.
+	 */
 	
 	@Override
 	public User findByEmail(String email) {	
@@ -66,6 +93,12 @@ public class UserDao implements DaoContract<User, Integer> {
          }
 		 return user;
 	} 
+	
+	/**
+	 * 
+	 * deleteById method will allow us to delete any user from the database using
+	 *     their unique id.
+	 */
 
 	@Override
 	public void deleteById(Integer id) {
@@ -73,6 +106,13 @@ public class UserDao implements DaoContract<User, Integer> {
 		sesfact.getCurrentSession().delete(t);		
 	}
 	
+	/**
+	 * 
+	 * generatePassword is a method that we implemented in order to invoke
+	 *     when a user forgets their password and wants to reset it. This method
+	 *         is called in the SendEmail class, which returns a randomly generated 
+	 *             password that the user will use to log in into their account.
+	 */
 	
 	public String generatePassword() {
 		
@@ -93,6 +133,13 @@ public class UserDao implements DaoContract<User, Integer> {
 		return generatedString;
 	}
 	
+	/**
+	 * 
+	 * The updatePass method will update the user's password in the database
+	 *     and give it a new value. The new value is the random password that is 
+	 *         randomly generated in the generatePassword() method.
+	 *         
+	 */
 		
 	public String updatePass(String email) {
 						
@@ -113,6 +160,13 @@ public class UserDao implements DaoContract<User, Integer> {
 												
 	}
 	
+	/**
+	 * 
+	 * update method with parameter type User will be invoked when we want to
+	 *     update some user information. if a user wants to modify their information,
+	 *         the update method will be invoked and the database will be updated.
+	 */
+	
 
 	@Override
 	public User update(User t) {
@@ -123,7 +177,15 @@ public class UserDao implements DaoContract<User, Integer> {
 	   // tx.commit();
 	    return t;
 	}
-
+	
+	/**
+	 * 
+	 * authentication method is used when we want to authenticate the 
+	 *     credentials of the user that is going to be logged in. when the user 
+	 *         enters their information, this method will be called to check if 
+	 *             the credentials are correct. 
+	 *        
+	 */
 	@Override
 	public Object authentication(String email, String password) {
 		Session session = sesfact.getCurrentSession();
@@ -141,6 +203,14 @@ public class UserDao implements DaoContract<User, Integer> {
 
 
 	}
+	
+	/**
+	 * 
+	 * securePassword method is used when the user is registering for a new account.
+	 *     For security reasons, the password is hashed before it gets stored in the database.
+	 *         this method is also called when we resent the password via email, or when the user chooses
+	 *             to change their password within their profile.
+	 */
 	
 	
 	public String securePassword(String passwordToHash){
@@ -171,6 +241,15 @@ public class UserDao implements DaoContract<User, Integer> {
 //	 List<User> list = session.createQuery(q).list();
 //	 return list;
 //	}
+	
+	/**
+	 * 
+	 * searchByName method is used when a user wants to search for a friend within their
+	 *     friends list. It is set to search via first name, but the wildcard symbol (%) is used.
+	 *         Therefore, when a user is searching for their friends, they don't have to type
+	 *             the whole firstname. They just have to type the first letter and if the user
+	 *                 present, then they will be able to visit  their profile. 
+	 */
 	
 	   public List<User> searchByName(String firstName){
 	      Session session = sesfact.getCurrentSession();
