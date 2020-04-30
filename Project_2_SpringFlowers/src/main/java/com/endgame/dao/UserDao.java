@@ -10,17 +10,17 @@ import java.util.Random;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
-import org.hibernate.SQLQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 //import org.springframework.transaction.annotation.Transactional;
 
 import com.endgame.helpers.SendEmail;
 import com.endgame.model.User;
-import org.hibernate.Query;
+
 
 /**
  * 

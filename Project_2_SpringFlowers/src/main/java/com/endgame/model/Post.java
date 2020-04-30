@@ -1,13 +1,10 @@
 package com.endgame.model;
 
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
