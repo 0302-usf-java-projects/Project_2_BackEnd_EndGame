@@ -20,24 +20,24 @@ public class PostService {
 		po=pd;
 	}
 	
-	public Post insert(Post p) {
+	public Post insert(Post p) {	//add a post method 
 		po.insert(p);
 		return p;
 	}
 	
-	public List<Post> findAll(){
+	public List<Post> findAll(){ //returns list of all post 
 		return po.findAll();
 	}
 	
-	public List<Post> findAllById(int id){
+	public List<Post> findAllById(int id){ //returns list of all post by a user
 		return po.getAllById(id);
 	}
 	
-	public void  delete(int id) {
+	public void  delete(int id) { //deletes post
 		po.delete(id); 
 	}
 	
-	public Post update(Post p) {
+	public Post update(Post p) {	//update post based on received post object
 		return po.update(p);
 	}
 
