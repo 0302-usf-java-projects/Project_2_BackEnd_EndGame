@@ -34,3 +34,18 @@
 2020-04-30 16:23:21 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
 2020-04-30 16:23:27 INFO  Version:21 - HV000001: Hibernate Validator 6.1.2.Final
 2020-04-30 16:23:30 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-30 17:30:40 INFO  Version:46 - HHH000412: Hibernate Core {5.4.10.Final}
+2020-04-30 17:30:41 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-30 17:30:42 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-30 17:30:50 INFO  Version:21 - HV000001: Hibernate Validator 6.1.2.Final
+2020-04-30 17:30:53 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-30 18:54:28 INFO  Version:46 - HHH000412: Hibernate Core {5.4.10.Final}
+2020-04-30 18:54:29 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-30 18:54:30 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-30 18:54:40 INFO  Version:21 - HV000001: Hibernate Validator 6.1.2.Final
+2020-04-30 18:54:44 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-30 18:55:03 INFO  Version:46 - HHH000412: Hibernate Core {5.4.10.Final}
+2020-04-30 18:55:04 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-30 18:55:05 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-30 18:55:14 INFO  Version:21 - HV000001: Hibernate Validator 6.1.2.Final
+2020-04-30 18:55:17 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]

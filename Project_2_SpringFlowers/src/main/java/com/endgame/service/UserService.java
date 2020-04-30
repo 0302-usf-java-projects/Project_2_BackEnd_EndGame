@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.endgame.dao.DaoContract;
 import com.endgame.model.User;
-import com.endgame.helpers.SendEmail;
+
 
 @Service
 public class UserService {

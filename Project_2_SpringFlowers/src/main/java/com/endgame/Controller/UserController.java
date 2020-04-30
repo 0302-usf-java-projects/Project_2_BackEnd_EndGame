@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.endgame.dao.UserDao;
-import com.endgame.helpers.SendEmail;
+
+
 import com.endgame.model.User;
 import com.endgame.service.UserService;
-import com.sun.istack.internal.logging.Logger;
+import com.sun.istack.logging.Logger;
+
 
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
-	final static Logger lg = Logger.getLogger(PostController.class);
+	final static Logger lg = Logger.getLogger(UserController.class);
 	
 	
 
@@ -100,11 +101,7 @@ public class UserController {
 	}
 	 
 
-//	@RequestMapping(method = RequestMethod.GET, value="/{email}/email.tony")
-//		public ResponseEntity<String> sendEmail(@PathVariable("email") String email){		
-//					us.sendMail(email); successfully
-//			return new ResponseEntity<String>("email sent", HttpStatus.OK);
-//	}
+
 	
 	
 	/** 

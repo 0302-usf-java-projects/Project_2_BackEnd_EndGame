@@ -33,7 +33,8 @@ public class PostController {
 	 */	
 	@RequestMapping(method = RequestMethod.GET, value = "/allposts.tony")
 	//response entity is a type that lets you build an entire http response
-	public ResponseEntity<List<Post>> findAll() {		
+	public ResponseEntity<List<Post>> findAll() {
+		lg.info("all post requested");
 		return new ResponseEntity<List<Post>>(ps.findAll(), HttpStatus.OK);
 	}
 		
