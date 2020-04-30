@@ -110,8 +110,7 @@ public class UserController {
 	 */	
 	@RequestMapping(method = RequestMethod.GET, value="/{email}/updatepass.tony")
 	public ResponseEntity<String> updatepass(@PathVariable("email") String email){		
-				us.updatePass(email);
-
+				
 		return new ResponseEntity<String>(us.updatePass(email), HttpStatus.OK);
 
 
