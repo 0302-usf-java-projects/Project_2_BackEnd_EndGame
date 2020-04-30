@@ -63,10 +63,10 @@ public class SendEmail {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 			// Set Subject: header field
-			message.setSubject("This is the Subject Line!");
+			message.setSubject("The Endgame Team");
 
 			// Now set the actual message
-			message.setText("This is you temp pass: " + user.getPassword());
+			message.setText("This is you temp password: " + user.getPassword());
 
 			System.out.println("sending...");
 			// Send message
