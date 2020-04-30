@@ -34,8 +34,53 @@ public class Comment {
 	private Post post;
 	private String content;
 	private String created;
+	private int user_id;
+	private String firstname;
+	private String lastname;
+
 	
-	
+	public int getUser_id() {
+		return user_id;
+	}
+
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+	public String getLastname() {
+		return lastname;
+	}
+
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+
+	public Comment(int id, Post post, String content, String created, int user_id, String firstname, String lastname) {
+		super();
+		this.id = id;
+		this.post = post;
+		this.content = content;
+		this.created = created;
+		this.user_id = user_id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", post=" + post + ", content=" + content + ", created=" + created + "]";
