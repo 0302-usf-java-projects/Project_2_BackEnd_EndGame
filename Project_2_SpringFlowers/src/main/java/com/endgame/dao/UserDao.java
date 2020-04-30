@@ -53,8 +53,18 @@ public class UserDao implements DaoContract<User, Integer> {
 		//Session session = sesfact.openSession();
 		 Session session = sesfact.getCurrentSession();
 		 String q = "from User where email ='"+email+"'";
-         User user = (User) session.createQuery(q).getSingleResult();
-		 return user;	
+         User user = null;
+         try{
+        	 user = (User) session.createQuery(q).getSingleResult();
+         }
+         catch (NoResultException nre){
+    		 return user;
+         }
+
+         if(user == null){
+          return null;
+         }
+		 return user;
 	} 
 
 	@Override
@@ -95,10 +105,10 @@ public class UserDao implements DaoContract<User, Integer> {
 			System.out.println(user.getPassword());
 			update(user);
 			
-			return "user found";
+			return "OK";
 			
 		}else {
-			return "user is not found";
+			return "NO";
 		}		
 												
 	}
