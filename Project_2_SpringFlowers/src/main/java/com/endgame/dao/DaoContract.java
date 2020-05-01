@@ -1,4 +1,4 @@
-package com.endgame.dao
+package com.endgame.dao;
 /**
  * 
  * 
