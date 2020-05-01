@@ -1,5 +1,11 @@
-package com.endgame.dao;
-
+package com.endgame.dao
+/**
+ * 
+ * 
+ * @param firstName
+ * DaoContract interface has the methods that will be implemented 
+ *  in the UserDao class.
+ */
 import java.util.List;
 
 public interface DaoContract<T,I> {

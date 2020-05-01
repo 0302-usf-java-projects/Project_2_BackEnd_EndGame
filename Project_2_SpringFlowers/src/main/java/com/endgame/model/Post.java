@@ -1,5 +1,12 @@
 package com.endgame.model;
 
+/**
+ * 
+ * This is the model class for the post. It has the different fields such as user, 
+ *      post, and comments. the user hjas a many-to-one relationship with the user_id,
+ *          since a user can make as many posts as he desires. The comments field has a one-to-many 
+ *                 relationship  with the post since their can be many comments per post.
+ */
 
 import java.util.Set;
 

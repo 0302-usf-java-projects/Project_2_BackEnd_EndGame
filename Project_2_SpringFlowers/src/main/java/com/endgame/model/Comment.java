@@ -14,7 +14,12 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-
+/**
+ * 
+ * @author mohamad
+ *This is he model class for the comment. It has different fields such as content and the
+ *      user_id. It also has the post field which has a many-to-one relationship with the post_id. 
+ */
 
 @Entity
 @Table(name="comment")

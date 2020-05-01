@@ -1,5 +1,10 @@
 package com.endgame.dao;
 
+/**
+ * 
+ * CommentDao class implements the CommentContract interface 
+ *      and proivdes implementation for those methods.
+ */
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,6 +28,10 @@ public class CommentDao implements CommentContract<Comment> {
 		sesfact= sse;
 	}
 
+	/**
+	 * insert method is invoked when a user wants to comment on
+	 *     one of his friends' posts. 
+	 */
 	@Override
 	public Comment insert(Comment c) {
 		System.out.println(c);
@@ -30,6 +39,13 @@ public class CommentDao implements CommentContract<Comment> {
 		return c;
 	}
 
+	/**
+	 * 
+	 * The getAllByPostId method is invoked when a user is viewing 
+	 *     a post in the feed and he is able to see all the comments made
+	 *         on a particular post. Each post has its own id and that is 
+	 *             how we can specify how comments and posts are related. 
+	 */
 	@Override
 	public List<Comment> getAllByPostId(int id) {
 		Comment u = sesfact.getCurrentSession().get(Comment.class, id);

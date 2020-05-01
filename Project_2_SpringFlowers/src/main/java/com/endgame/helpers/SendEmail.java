@@ -12,6 +12,12 @@ import javax.mail.internet.MimeMessage;
 
 import com.endgame.model.User;
 
+/**
+ * 
+ * @author mohamad
+ *SendEmail class has the methods that are needed to automatically send emails when
+ *      a user forgets their password and uses their email in order to retrieve a new password.
+ */
 public class SendEmail {
 	
 

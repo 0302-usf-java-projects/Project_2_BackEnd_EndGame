@@ -1,5 +1,11 @@
 package com.endgame.model;
 
+/**
+ * 
+ * This is the user model class. It has all the fields that are related to the user such as
+ *      the firstname, lastname, email and password. The posts field jas a one-to-many relationship with user
+ *          since one user can have as many posts as they want.
+ */
 import java.util.Set;
 
 import javax.persistence.CascadeType;
