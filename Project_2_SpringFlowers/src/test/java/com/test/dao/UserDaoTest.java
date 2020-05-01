@@ -34,14 +34,13 @@ public class UserDaoTest {
 	@Mock
 	private SessionFactory sesfact;
 	
-	@Mock
-	private Session ses;
-	
+	@InjectMocks
 	private UserDao ud;
 	
+	
 	@Before
-	public void setup() throws Exception {
-		ud = new UserDao();
+	public void setup(){
+		MockitoAnnotations.initMocks(this);
 	}
 	
 	
